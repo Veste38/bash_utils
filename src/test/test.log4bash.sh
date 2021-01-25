@@ -95,5 +95,42 @@ log_date_format='+%Hh%M and %Ss on %A %d/%m/%Y'
 displayAllLogs
 
 echo ''
+echo '--------------------------------------------'
+echo ' Test with appenders CONSOLE and FILE       '
+echo '--------------------------------------------'
+log_date_format='+%d/%m/%Y %H:%M:%S'
+
+log_appender='CONSOLE,FILE'
+log_file="../log/test.log4bash-"$(date '+%Y%m%d_%H%M%S')".log"
+
+displayAllLogs
+
 echo ''
+echo ''
+
+echo ''
+echo '--------------------------------------------'
+echo ' Test progress bar                          '
+echo '--------------------------------------------'
+
+log_appender='FILE'
+
+var_progress_start=1
+var_progress_total=20
+
+# Proof of concept
+log_progress_start ${var_progress_total}
+sleep 1
+
+for var_progress_number in $(seq ${var_progress_start} ${var_progress_total})
+do
+    sleep 0.5
+    log_progress ${var_progress_number} ${var_progress_total} "Message test ${var_progress_number}"
+done
+
+log_progress_stop
+
+log_appender='CONSOLE,FILE'
+
+log_msgok "           --== Installation succeeded! ==--"
 
