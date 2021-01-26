@@ -107,30 +107,9 @@ displayAllLogs
 
 echo ''
 echo ''
+echo "Content of log file (${log_file}):"
+less -FX "${log_file}"
 
 echo ''
-echo '--------------------------------------------'
-echo ' Test progress bar                          '
-echo '--------------------------------------------'
-
-log_appender='FILE'
-
-var_progress_start=1
-var_progress_total=20
-
-# Proof of concept
-log_progress_start ${var_progress_total}
-sleep 1
-
-for var_progress_number in $(seq ${var_progress_start} ${var_progress_total})
-do
-    sleep 0.5
-    log_progress ${var_progress_number} ${var_progress_total} "Message test ${var_progress_number}"
-done
-
-log_progress_stop
-
-log_appender='CONSOLE,FILE'
-
-log_msgok "           --== Installation succeeded! ==--"
+echo ''
 
