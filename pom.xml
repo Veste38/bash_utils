@@ -72,7 +72,7 @@
                         <phase>package</phase>
                         <configuration>
                             <tasks>
-                                <fixcrlf srcdir="${basedir}" eol="unix" includes="**/test,**/lib" />
+                                <fixcrlf srcdir="${basedir}" eol="unix" includes="**/test/*.sh,**/lib/*.sh" />
                             </tasks>
                         </configuration>
                         <goals>
